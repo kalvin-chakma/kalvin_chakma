@@ -21,14 +21,14 @@ const HeroSection = () => {
   return (
     <div className="w-full flex flex-col items-center justify-center mx-auto p-2 rounded-lg shadow-md">
       {/* Header */}
-      <div className="mb-4 text-center">
-        <Image
+      <div className="mb-8 text-center">
+        {/* <Image
           src="/kalvin-chakma.jpg"
           alt="Kalvin Chakma"
           width={100}
           height={100}
           className="rounded-full shadow-lg object-cover mx-auto"
-        />
+        /> */}
         <h1 className="text-3xl font-bold text-gray-100 mt-4">Kalvin Chakma</h1>
         <div className="flex flex-wrap items-center text-xs justify-center gap-2 text-gray-400 mt-2">
           <span>+880 1533-023730</span>
@@ -45,7 +45,7 @@ const HeroSection = () => {
       </div>
 
       {/* Education */}
-      <section className="mb-5 w-full">
+      <section className="mb-8 w-full">
         <h2 className="text-xl font-bold text-gray-300 border-b border-gray-700 pb-1 mb-2">
           EDUCATION
         </h2>
@@ -65,7 +65,7 @@ const HeroSection = () => {
       </section>
 
       {/* Technical Skills */}
-      <section className="w-full">
+      <section className="w-full mb-8">
         <h2 className="text-xl font-bold text-gray-300 border-b border-gray-700 pb-1 mb-2">
           TECHNICAL SKILLS
         </h2>
