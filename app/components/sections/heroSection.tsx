@@ -2,20 +2,22 @@ import Image from "next/image";
 import React from "react";
 
 const skills = [
-  { title: "Languages", details: "C/C++, SQL (Postgres, Prisma), JavaScript" },
-  {
-    title: "Frameworks",
-    details: "React, Next.js, Node.js, Express, CSS (Tailwind)",
-  },
-  {
-    title: "Dev Tools",
-    details: "Git, GitHub, Postman, MongoDB, PostgreSQL, Vercel, Docker",
-  },
-  {
-    title: "Libraries",
-    details: "Redux/Zustand, React Router, Aceternity UI, Material UI",
-  },
+  "C/C++",
+  "JavaScript",
+  "Node.js",
+  "React",
+  "Express",
+  "Next.js",
+  "SQL",
+  "PostgreSQL",
+  "MongoDB",
+  "Git",
+  "GitHub",
+  "Tailwind CSS",
+  "framer motion"
 ];
+
+
 
 const HeroSection = () => {
   return (
@@ -69,14 +71,11 @@ const HeroSection = () => {
         <h2 className="text-xl font-bold text-gray-300 border-b border-gray-700 pb-1 mb-2">
           TECHNICAL SKILLS
         </h2>
-        <div className="text-sm">
-          {skills.map((skill) => (
-            <div className="flex" key={skill.title}>
-              <h3 className="font-semibold text-gray-400 min-w-[100px]">
-                {skill.title}:
-              </h3>
-              <p className="text-gray-400/70">{skill.details}</p>
-            </div>
+        <div className="flex flex-wrap gap-2 w-full">
+          {skills.map((skill, idx) => (
+            <h3 key={idx} className="font-semibold bg-gray-200 px-2 rounded text-xs/5">
+              {skill}
+            </h3>
           ))}
         </div>
       </section>

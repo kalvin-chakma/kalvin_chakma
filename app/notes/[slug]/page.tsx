@@ -3,6 +3,8 @@
 import React from "react";
 import MDEditor from "@uiw/react-md-editor";
 import Link from "next/link";
+import { FaBackward } from "react-icons/fa";
+
 
 export default function NotePage({
   params,
@@ -44,10 +46,11 @@ export default function NotePage({
   return (
     <div className="max-w-3xl mx-auto py-5 bg-black ">
       <Link
-        href="/"
-        className="px-4 inline-block transition-colors duration-200 text-white"
+        href="/notes"
+        className="px-4 gap-2 flex items-center transition-colors duration-200 text-white font-semibold hover:text-white/50"
       >
-      Back to Notes
+        <FaBackward />
+      Back
       </Link>
       {loading ? (<div>Loading....</div>):(<div data-color-mode="dark">
         <MDEditor.Markdown 

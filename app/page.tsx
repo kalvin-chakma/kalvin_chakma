@@ -1,11 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import ProjectList from "./components/layout/projects";
 import HeroSection from "./components/sections/heroSection";
-import Educations from "./components/sections/educations";
-import Experience from "./components/sections/experience";
-import Notes from "./components/sections/page";
 import Link from "next/link";
 import useOutsideClick from "./hooks/useOutsideClick";
 
@@ -19,7 +16,7 @@ type Project = {
 export default function Home() {
   const [activeTab, setActiveTab] = useState("Project");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const tabs = ["Project", "Education", "Experience", "Notes"];
+  const tabs = ["Project", "Notes"];
   const ref = useOutsideClick(() => setSelectedProject(null));
 
   return (
@@ -28,7 +25,7 @@ export default function Home() {
         <div className="fixed inset-0 z-10 h-full w-full bg-black/50 backdrop-blur-xs"></div>
       )}
 
-      <main className="mx-auto w-full max-w-3xl p-6">
+      <main className="mx-auto w-full max-w-2xl p-6">
         <div className="flex w-full flex-col items-center justify-center">
           <HeroSection />
 
@@ -57,9 +54,9 @@ export default function Home() {
           {/* Navbar Tabs */}
           <div className="flex w-full justify-center space-x-8">
             {tabs.map((tab, idx) => (
-              <span
+              <Link
                 key={idx}
-                onClick={() => setActiveTab(tab)}
+                href={tab === "Project" ? "/" : "/notes"}
                 className={`cursor-pointer border-b-2 pb-2 text-sm transition-all duration-200 ${
                   activeTab === tab
                     ? "border-green-700 font-semibold text-green-700"
@@ -67,18 +64,13 @@ export default function Home() {
                 }`}
               >
                 {tab}
-              </span>
+              </Link>
             ))}
           </div>
 
           {/* Tab Content */}
           <div className="mt-6 w-full">
-            {activeTab === "Project" && (
-              <ProjectList onSelect={setSelectedProject} />
-            )}
-            {activeTab === "Education" && <Educations />}
-            {activeTab === "Experience" && <Experience />}
-            {activeTab === "Notes" && <Notes />}
+            <ProjectList onSelect={setSelectedProject} />
           </div>
         </div>
       </main>

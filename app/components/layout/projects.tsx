@@ -1,11 +1,15 @@
 "use client";
+import Link from "next/link";
 import React from "react";
+import { FaGithubSquare,FaExternalLinkAlt } from "react-icons/fa";
 
 type Project = {
   title: string;
   description: string;
   url: string;
+  link:string;
   point: string;
+  image?: string;
 };
 
 interface ProjectListProps {
@@ -15,71 +19,95 @@ interface ProjectListProps {
 const ProjectList = ({ onSelect }: ProjectListProps) => {
   const projects: Project[] = [
     {
-      title: "scripture",
+      title: "Scripture",
       description:
         "Note-taking app with Markdown (live preview) and rich-text (Editor.js) support. Secure JWT auth with hashed passwords.",
       url: "https://github.com/kalvin-chakma/scripture",
+      link:"https://scripture-esqx.vercel.app/",
+      image: "/scripture-home.png",
       point: `• Built a responsive note-taking app using React and Tailwind CSS.
 • Implemented JWT-based authentication with hashed passwords for enhanced security.
 • Supported both Markdown (with live preview) and rich-text notes using Editor.js.`,
-      // ✔ Corrected wording and punctuation for clarity and professionalism
     },
     {
       title: "MovieApp",
       description:
         "React app styled with Tailwind CSS. Uses TMDB API to display movies with search and filters.",
       url: "https://github.com/kalvin-chakma/MovieApp",
+      link:"https://movie-app-six-vert.vercel.app/",
+      image: "/movieApp-home.png",
       point: `• Integrated TMDB API using Axios to dynamically fetch and display movie data.
 • Built features like movie detail view, search, and filter functionality for improved UX.`,
-      // ✔ Grammar corrected; shortened and refined the second point
     },
     {
-      title: "Project-CSE-2200",
+      title: "EDokan E-Commerce",
       description:
         "Full-stack MERN e-commerce app with JWT auth and Admin/Buyer roles.",
       url: "https://github.com/kalvin-chakma/Project-CSE-2200",
+      link:"https://project-cse-2200-ui.vercel.app/",
+      image: "/eDokan-home.png",
       point: `• Built a full-stack MERN e-commerce application with RESTful APIs.
 • Implemented JWT authentication with access/refresh tokens and role-based access for Admin and Buyer.
 • Integrated GitHub visualization to display team collaboration.
 • Deployed the frontend using Vercel for scalable hosting.`,
-      // ✔ More formal sentence structure and improved wording consistency
     },
     {
-      title: "Assignment_CSE-2200",
+      title: "To-Do App",
       description:
         "ToDo App using JavaScript, HTML, Bootstrap – CSE 2200 Assignment.",
       url: "https://github.com/kalvin-chakma/Assignment_CSE-2200",
+      link:"https://assignment-cse-2200.vercel.app/",
+      image: "/todo-home.png",
       point: `• Developed a simple ToDo list using vanilla JavaScript and Bootstrap.
 • Enabled adding, deleting, and marking tasks as complete.
 • Used localStorage for persistent task storage.`,
-      // ✔ Improved clarity and corrected tense consistency
-    },
-    {
-      title: "Assignment_CSE-2100",
-      description: "CSE 2100 Software Development II - Assignment 1",
-      url: "https://github.com/kalvin-chakma/scripture",
-      point: `• Built a basic project using HTML, CSS, and JavaScript.
-• Practiced core software development principles and submission workflows.`,
-      // ✔ Reworded for smoother flow
     },
   ];
 
   return (
     <div className="no-scrollbar relative mx-auto max-w-5xl rounded-lg p-1 shadow-md">
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         {projects.map((project, index) => (
           <div
             key={index}
             onClick={() => onSelect(project)}
-            className="h-[15vh] cursor-pointer rounded-md border border-gray-500/75 p-5 text-center shadow transition-all hover:shadow-md hover:scale-105"
+            className="h-[46vh] cursor-pointer rounded-md border border-gray-500/75 text-center shadow transition-all hover:shadow-md hover:scale-[1.02]"
           >
-            <a
-              href={project.url}
-              className="text-md mb-2 block cursor-pointer font-semibold text-gray-100"
-            >
-              {project.title}
-            </a>
-            <p className="mb-3 text-xs text-gray-500">{project.description}</p>
+            {project.image && (
+              <img
+                src={project.image}
+                alt={`${project.title} screenshot`}
+                className="mx-auto  h-[19vh] w-full object-fit rounded-t-md"
+              />
+            )}
+            <div className="p-2">
+              {" "}
+              <p
+                className="h-[2vh] text-md mb-3 block font-semibold text-gray-100 tracking-tight "
+              >
+                {project.title}
+              </p>
+              <p className="h-[6vh] overflow-hidden mb-1 text-xs text-gray-500">
+                {project.description}
+              </p>
+              <div className="h-[11vh] mb-2 text-xs/3.5 text-gray-500 text-justify overflow-hidden">
+                {project.point.split("\n").map((point, i) => (
+                  <p key={i} className="mb-1">
+                    {point}
+                  </p>
+                ))}
+              </div>
+              <div className="flex gap-3">
+                <Link href={project.url} onClick={(e) => e.stopPropagation()} className="bg-gray-700 py-0.5 px-2 flex items-center rounded-md text-white/60 text-xs font-semibold">
+                  <FaGithubSquare className="h-3 mr-1.5"/>
+                  GitHub
+                </Link>
+                <Link href={project.link} onClick={(e) => e.stopPropagation()} className="bg-gray-700 py-0.5 px-2 flex items-center rounded-md text-white/60 text-xs font-semibold">
+                  <FaExternalLinkAlt className="h-3 mr-1.5"/>
+                  Browser
+                </Link>
+              </div>
+            </div>
           </div>
         ))}
       </div>

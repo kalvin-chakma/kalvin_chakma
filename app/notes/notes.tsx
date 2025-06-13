@@ -39,20 +39,19 @@ const Notes = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-white mb-8">My Notes</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="container mx-auto  ">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
         {notes.map((note) => (
           <Link
             href={`/notes/${note.slug}`}
             key={note.slug}
             className="block"
           >
-            <div className="bg-gray-800 rounded-lg p-6 hover:bg-gray-700 transition-colors duration-200 cursor-pointer">
-              <h2 className="text-xl font-semibold text-white mb-2">
+            <div className="cursor-pointer rounded-md border border-gray-500/75 p-4 shadow transition-all hover:shadow-md hover:scale-[1.02]">
+              <h2 className="text-md font-semibold text-white">
                 {note.title}
               </h2>
-              <p className="text-gray-400">Click to read more</p>
+              <p className="text-gray-400 text-xs/4">Click to read more</p>
             </div>
           </Link>
         ))}
