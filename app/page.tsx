@@ -5,7 +5,7 @@ import ProjectList from "./components/layout/projects";
 import HeroSection from "./components/sections/heroSection";
 import Educations from "./components/sections/educations";
 import Experience from "./components/sections/experience";
-import Notes from "./components/sections/notes";
+import Notes from "./components/sections/page";
 import Link from "next/link";
 import useOutsideClick from "./hooks/useOutsideClick";
 

@@ -71,7 +71,7 @@ const ProjectList = ({ onSelect }: ProjectListProps) => {
           <div
             key={index}
             onClick={() => onSelect(project)}
-            className="h-[15vh] cursor-pointer rounded-md border border-gray-500/75 p-5 text-center shadow transition-all hover:shadow-md"
+            className="h-[15vh] cursor-pointer rounded-md border border-gray-500/75 p-5 text-center shadow transition-all hover:shadow-md hover:scale-105"
           >
             <a
               href={project.url}
