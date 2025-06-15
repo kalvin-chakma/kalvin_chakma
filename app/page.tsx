@@ -5,11 +5,14 @@ import ProjectList from "./components/layout/projects";
 import HeroSection from "./components/sections/heroSection";
 import Link from "next/link";
 import useOutsideClick from "./hooks/useOutsideClick";
+import { FaGithubSquare, FaExternalLinkAlt } from "react-icons/fa";
 
 type Project = {
+  image?: string;
   title: string;
   description: string;
   url: string;
+  link: string;
   point: string;
 };
 
@@ -20,12 +23,12 @@ export default function Home() {
   const ref = useOutsideClick(() => setSelectedProject(null));
 
   return (
-    <div className="relative flex min-h-screen bg-black">
+    <div className="relative flex min-h-screen bg-white text-black dark:bg-black dark:text-white">
       {selectedProject && (
-        <div className="fixed inset-0 z-10 h-full w-full bg-black/50 backdrop-blur-xs"></div>
+        <div className="fixed inset-0 z-10 h-full w-full dark:bg-black/50 backdrop-blur-xs"></div>
       )}
 
-      <main className="mx-auto w-full max-w-2xl p-6">
+      <main>
         <div className="flex w-full flex-col items-center justify-center">
           <HeroSection />
 
@@ -33,20 +36,45 @@ export default function Home() {
             <div className="fixed inset-0 z-20 flex items-center justify-center bg-black/50">
               <div
                 ref={ref}
-                className="m-auto h-[30vh] w-[80vh] rounded-md border border-gray-500/75 bg-black p-5 text-center shadow transition-all hover:shadow-md"
+                className="m-auto h-[70vh] w-[55vh] rounded-md border border-gray-500/75 bg-black  text-center shadow transition-all hover:shadow-md flex flex-col justify-between"
               >
-                <Link
-                  href={selectedProject.url}
-                  className="text-md mb-2 block cursor-pointer font-semibold text-gray-100"
-                >
-                  {selectedProject.title}
-                </Link>
-                <p className="mb-3 text-xs text-gray-500">
-                  {selectedProject.description}
-                </p>
-                <p className="text-center text-sm text-gray-400 whitespace-pre-line">
-                  {selectedProject.point}
-                </p>
+                <div>
+                  {selectedProject.image && (
+                    <img
+                      src={selectedProject.image}
+                      alt={`${selectedProject.title} screenshot`}
+                      className="mx-auto h-[35vh] w-full object-fit rounded-t-md mb-2"
+                    />
+                  )}
+                  <p className="text-md mb-2 font-semibold text-gray-100">
+                    {selectedProject.title}
+                  </p>
+                  <p className="mb-3 text-xs text-gray-500">
+                    {selectedProject.description}
+                  </p>
+                  <p className="text-sm text-gray-400 whitespace-pre-line">
+                    {selectedProject.point}
+                  </p>
+                </div>
+
+                <div className="flex gap-3 justify-center mt-4 p-5">
+                  <Link
+                    href={selectedProject.url}
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-gray-700 py-0.5 px-2 flex items-center rounded-md text-white/60 text-xs font-semibold"
+                  >
+                    <FaGithubSquare className="h-3 mr-1.5" />
+                    GitHub
+                  </Link>
+                  <Link
+                    href={selectedProject.link}
+                    onClick={(e) => e.stopPropagation()}
+                    className="bg-gray-700 py-0.5 px-2 flex items-center rounded-md text-white/60 text-xs font-semibold"
+                  >
+                    <FaExternalLinkAlt className="h-3 mr-1.5" />
+                    Browser
+                  </Link>
+                </div>
               </div>
             </div>
           )}

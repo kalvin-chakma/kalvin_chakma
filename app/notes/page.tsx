@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import HeroSection from "../components/sections/heroSection";
-import Notes from "./notes";
+import Notes from "../components/ui/notes";
 import Link from "next/link";
 
 export default function NotesPage() {
@@ -10,7 +10,7 @@ export default function NotesPage() {
   const tabs = ["Project", "Notes"];
 
   return (
-    <div className="relative flex min-h-screen bg-black">
+    <div className="relative flex min-h-screen bg-white text-black dark:bg-black dark:text-white">
       <main className="mx-auto w-full max-w-2xl p-6">
         <div className="flex w-full flex-col items-center justify-center">
           <HeroSection />
