@@ -11,12 +11,12 @@ export default function NotesPage() {
 
   return (
     <div className="relative flex min-h-screen bg-white text-black dark:bg-black dark:text-white">
-      <main className="mx-auto w-full max-w-2xl p-6">
+      <main className="mx-auto w-full max-w-2xl px-6">
         <div className="flex w-full flex-col items-center justify-center">
           <HeroSection />
 
           {/* Navbar Tabs */}
-          <div className="flex w-full justify-center space-x-8">
+          <div className="flex w-full justify-center space-x-8 font-semibold">
             {tabs.map((tab, idx) => (
               <Link
                 key={idx}
@@ -24,7 +24,7 @@ export default function NotesPage() {
                 className={`cursor-pointer border-b-2 pb-2 text-sm transition-all duration-200 ${
                   activeTab === tab
                     ? "border-green-700 font-semibold text-green-700"
-                    : "border-transparent text-gray-300 hover:border-gray-300"
+                    : "border-transparent text-black hover:border-black/50 dark:text-gray-300 dark:hover:border-gray-300"
                 }`}
               >
                 {tab}
@@ -40,4 +40,4 @@ export default function NotesPage() {
       </main>
     </div>
   );
-} 
+}

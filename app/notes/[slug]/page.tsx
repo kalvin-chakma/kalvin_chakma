@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
-import React from "react";
+import React, { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import Link from "next/link";
 import { FaBackward } from "react-icons/fa";
-
+import useThemeStore from "@/app/store/useThemeStore";
+import Loader from "@/app/components/ui/loader";
 
 export default function NotePage({
   params,
@@ -12,21 +13,22 @@ export default function NotePage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = React.use(params);
-  const [content, setContent] = React.useState<string>("");
-  const [loading, setLoading] = React.useState(true);
-  const [error, setError] = React.useState<string | null>(null);
+  const [content, setContent] = useState<string>("");
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const darkMode = useThemeStore((state) => state.darkMode);
 
   React.useEffect(() => {
     const fetchNote = async () => {
       try {
         const response = await fetch(`/api/notes/${resolvedParams.slug}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch note');
+          throw new Error("Failed to fetch note");
         }
         const data = await response.json();
         setContent(data.content);
       } catch (error) {
-        setError(error instanceof Error ? error.message : 'An error occurred');
+        setError(error instanceof Error ? error.message : "An error occurred");
       } finally {
         setLoading(false);
       }
@@ -44,26 +46,32 @@ export default function NotePage({
   }
 
   return (
-    <div className="max-w-3xl mx-auto py-5 bg-black ">
+    <div className="max-w-3xl mx-auto py-5">
       <Link
         href="/notes"
-        className="px-4 gap-2 flex items-center transition-colors duration-200 text-white font-semibold hover:text-white/50"
+        className="px-4 gap-2 flex items-center transition-colors duration-200 font-semibold text-black hover:text-black/70 dark:text-white  dark:hover:text-white/50"
       >
         <FaBackward />
-      Back
+        Back
       </Link>
-      {loading ? (<div>Loading....</div>):(<div data-color-mode="dark">
-        <MDEditor.Markdown 
-          source={content} 
-          style={{
-            backgroundColor: 'transparent',
-            fontSize: '16px',
-            fontFamily: 'Arial, sans-serif',
-            lineHeight: '1.6',
-            padding: '1em',
-          }} 
-        />
-      </div>)}
+      {loading ? (
+        <div className="flex justify-center items-center">
+          <Loader />
+        </div>
+      ) : (
+        <div data-color-mode={darkMode ? "dark" : "light"}>
+          <MDEditor.Markdown
+            source={content}
+            style={{
+              backgroundColor: "transparent",
+              fontSize: "16px",
+              fontFamily: "Arial, sans-serif",
+              lineHeight: "1.6",
+              padding: "1em",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
-} 
+}

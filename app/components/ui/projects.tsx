@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { FaGithubSquare, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithubSquare, FaExternalLinkAlt, FaLink } from "react-icons/fa";
 
 type Project = {
   title: string;
@@ -65,57 +65,61 @@ const ProjectList = ({ onSelect }: ProjectListProps) => {
   ];
 
   return (
-    <div className="no-scrollbar p-2">
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-        {projects.map((project, index) => (
-          <div
-            key={index}
-            onClick={() => onSelect(project)}
-            className="h-[46vh] cursor-pointer rounded-md border border-gray-500/75 text-center shadow transition-all hover:shadow-md hover:scale-[1.02]"
-          >
-            {project.image && (
-              <img
-                src={project.image}
-                alt={`${project.title} screenshot`}
-                className="mx-auto  h-[19vh] w-full object-fit rounded-t-md"
-              />
-            )}
-            <div className="p-2">
-              {" "}
-              <p className="h-[2vh] text-md mb-3 block font-semibold text-gray-100 tracking-tight ">
-                {project.title}
-              </p>
-              <p className="h-[6vh] overflow-hidden mb-1 text-xs text-gray-500">
-                {project.description}
-              </p>
-              <div className="h-[11vh] mb-2 text-xs/3.5 text-gray-500 text-justify overflow-hidden">
-                {project.point.split("\n").map((point, i) => (
-                  <p key={i} className="mb-1">
-                    {point}
-                  </p>
-                ))}
-              </div>
-              <div className="flex gap-3">
-                <Link
-                  href={project.url}
-                  onClick={(e) => e.stopPropagation()}
-                  className="bg-gray-700 py-0.5 px-2 flex items-center rounded-md text-white/60 text-xs font-semibold"
-                >
-                  <FaGithubSquare className="h-3 mr-1.5" />
-                  GitHub
-                </Link>
-                <Link
-                  href={project.link}
-                  onClick={(e) => e.stopPropagation()}
-                  className="bg-gray-700 py-0.5 px-2 flex items-center rounded-md text-white/60 text-xs font-semibold"
-                >
-                  <FaExternalLinkAlt className="h-3 mr-1.5" />
-                  Browser
-                </Link>
+    <div className="relative flex min-h-screen bg-white text-black dark:bg-[#08090a] dark:text-white">
+      <div className="no-scrollbar p-2">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              onClick={() => onSelect(project)}
+              className=" h-[46vh] cursor-pointer rounded-md border border-gray-500/35 text-center shadow transition-all hover:shadow-md hover:scale-[1.02]"
+            >
+              {project.image && (
+                <img
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  className="mx-auto h-[19vh] w-full object-fit rounded-t-md"
+                />
+              )}
+              <div className="p-2">
+                {" "}
+                <p className="h-[2vh] text-md mb-3 block font-semibold text-black dark:text-gray-100 tracking-tight ">
+                  {project.title}
+                </p>
+                <p className="h-[6vh] overflow-hidden mb-1 text-xs text-gray-500">
+                  {project.description}
+                </p>
+                <div className="h-[11vh] mb-2.5 text-xs/3.5 text-gray-500 text-justify overflow-hidden">
+                  {project.point.split("\n").map((point, i) => (
+                    <p key={i} className="mb-1">
+                      {point}
+                    </p>
+                  ))}
+                </div>
+                <div className="flex gap-3 text-[10px]">
+                  <Link
+                    href={project.url}
+                    onClick={(e) => e.stopPropagation()}
+                    target="_blank"
+                    className="py-0.5 px-2 flex items-center rounded-md bg-black text-white dark:bg-gray-700 dark:text-white/60  font-semibold"
+                  >
+                    <FaGithubSquare className="h-3 mr-1.5" />
+                    GitHub
+                  </Link>
+                  <Link
+                    href={project.link}
+                    onClick={(e) => e.stopPropagation()}
+                    target="_blank"
+                    className="py-0.5 px-2 flex items-center rounded-md bg-black text-white dark:bg-gray-700 dark:text-white/60 font-semibold"
+                  >
+                    <FaLink className="h-3 mr-1.5" />
+                    Preview
+                  </Link>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

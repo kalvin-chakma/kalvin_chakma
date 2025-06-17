@@ -39,7 +39,7 @@ const Notes = () => {
   }
 
   return (
-    <div className="container mx-auto  ">
+    <div className="container mx-auto bg-white text-black dark:bg-black dark:text-white">
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-4">
         {notes.map((note) => (
           <Link
@@ -48,7 +48,7 @@ const Notes = () => {
             className="block"
           >
             <div className="cursor-pointer rounded-md border border-gray-500/75 p-4 shadow transition-all hover:shadow-md hover:scale-[1.02]">
-              <h2 className="text-md font-semibold text-white">
+              <h2 className="text-md font-semibold ">
                 {note.title}
               </h2>
               <p className="text-gray-400 text-xs/4">Click to read more</p>
