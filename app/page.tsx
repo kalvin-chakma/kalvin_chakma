@@ -23,7 +23,7 @@ export default function Home() {
   const ref = useOutsideClick(() => setSelectedProject(null));
 
   return (
-    <div className="relative flex min-h-screen bg-white text-black dark:bg-black dark:text-white">
+    <div className="relative flex min-h-screen bg-white text-black dark:bg-black dark:text-white ">
       {selectedProject && (
         <div className="fixed inset-0 z-10 h-full w-full dark:bg-black/50 backdrop-blur-xs"></div>
       )}
@@ -33,7 +33,10 @@ export default function Home() {
           <HeroSection />
 
           {selectedProject && (
-            <div className="fixed inset-0 z-20 flex items-center justify-center dark:bg-black/50">
+            <div
+              className="fixed inset-0 z-20 flex items-center justify-center dark:bg-black/50 motion-preset-pop motion-duration-2000
+"
+            >
               <div
                 ref={ref}
                 className="m-auto h-[70vh] w-[55vh] rounded-md  bg-white dark:bg-black  text-center shadow transition-all hover:shadow-md flex flex-col justify-between"

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "tailwindcss-motion";
+
 @custom-variant dark (&:where(.dark, .dark *));
 /* Hide scrollbar for Chrome, Safari and Opera */
 ::-webkit-scrollbar {

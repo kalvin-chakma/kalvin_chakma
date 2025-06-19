@@ -4,6 +4,7 @@ import { useState } from "react";
 import { BsLightbulbFill, BsLightbulbOffFill } from "react-icons/bs";
 import { IoMdHome, IoLogoGithub } from "react-icons/io";
 import useThemeStore from "@/app/store/useThemeStore";
+import useOutsideClick from "@/app/hooks/useOutsideClick";
 
 const Navbar = () => {
   const { scrollY } = useScroll();
