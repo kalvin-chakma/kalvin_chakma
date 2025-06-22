@@ -5,7 +5,8 @@ import ProjectList from "./components/ui/projects";
 import HeroSection from "./components/sections/heroSection";
 import Link from "next/link";
 import useOutsideClick from "./hooks/useOutsideClick";
-import { FaGithubSquare, FaExternalLinkAlt, FaLinkedin } from "react-icons/fa";
+import { FaGithubSquare, FaExternalLinkAlt } from "react-icons/fa";
+import { SiPeerlist, SiLinkedin } from "react-icons/si";
 
 type Project = {
   image?: string;
@@ -106,7 +107,17 @@ export default function Home() {
             <ProjectList onSelect={setSelectedProject} />
           </div>
         </div>
-        <div className="h-[10vh] flex items-center justify-center px-10 text-center"></div>
+        <div className="h-[15vh] flex items-center justify-center px-10 text-center gap-5 text-2xl">
+          <Link
+            href={"https://www.linkedin.com/in/kalvin-chakma-22846724a/"}
+            target="_blank"
+          >
+            <SiLinkedin />
+          </Link>
+          <Link href={"https://peerlist.io/kalvin"} target="_blank">
+            <SiPeerlist />
+          </Link>
+        </div>
       </main>
     </div>
   );
