@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import MDEditor from "@uiw/react-md-editor";
 import Link from "next/link";
 import { FaBackward } from "react-icons/fa";
-import useThemeStore from "@/app/store/useThemeStore";
 import Loader from "@/app/components/ui/loader";
+import { useTheme } from "next-themes";
 
 export default function NotePage({
   params,
@@ -16,7 +16,7 @@ export default function NotePage({
   const [content, setContent] = useState<string>("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const darkMode = useThemeStore((state) => state.darkMode);
+  const { theme, setTheme } = useTheme();
 
   React.useEffect(() => {
     const fetchNote = async () => {
@@ -59,7 +59,7 @@ export default function NotePage({
           <Loader />
         </div>
       ) : (
-        <div data-color-mode={darkMode ? "dark" : "light"}>
+        <div data-color-mode={theme === "dark" ? "dark" : "light"}>
           <MDEditor.Markdown
             source={content}
             style={{

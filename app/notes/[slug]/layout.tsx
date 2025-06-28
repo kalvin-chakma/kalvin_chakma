@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@/app/store/theme-provider";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -11,5 +12,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <div className=" min-h-screen">{children}</div>;
+  return (
+    <div className=" min-h-screen">
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        {children}
+      </ThemeProvider>
+    </div>
+  );
 }

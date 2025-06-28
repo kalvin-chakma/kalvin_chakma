@@ -1,19 +1,27 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useMotionValueEvent, useScroll, motion } from "motion/react";
-import { useState } from "react";
 import { BsLightbulbFill, BsLightbulbOffFill } from "react-icons/bs";
 import { IoMdHome, IoLogoGithub } from "react-icons/io";
-import useThemeStore from "@/app/store/useThemeStore";
-import useOutsideClick from "@/app/hooks/useOutsideClick";
+import { useTheme } from "next-themes";
 
 const Navbar = () => {
   const { scrollY } = useScroll();
   const [scrolled, setScrolled] = useState(false);
-  const { darkMode, toggleTheme } = useThemeStore();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 30);
   });
+
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <motion.div
@@ -53,7 +61,7 @@ const Navbar = () => {
           onClick={toggleTheme}
         >
           <div>
-            {darkMode ? (
+            {mounted && theme === "dark" ? (
               <BsLightbulbOffFill
                 className={`${scrolled ? "w-6 h-6" : "w-4 h-4"}`}
               />

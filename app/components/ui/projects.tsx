@@ -65,7 +65,7 @@ const ProjectList = ({ onSelect }: ProjectListProps) => {
   ];
 
   return (
-    <div className="relative flex min-h-screen bg-white text-black dark:bg-[#08090a] dark:text-white">
+    <div className="relative flex min-h-screen bg-white text-black dark:bg-black dark:text-white">
       <div className="no-scrollbar p-2">
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
           {projects.map((project, index) => (
