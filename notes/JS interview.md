@@ -238,5 +238,3 @@ const doubled = items.map((x) => x * 2); // [2,4,6,8]
 - **Prototypes & strict mode** → foundational JS for safe, efficient code.
 
 ---
-
-Let me know if you want deeper examples or practice questions on any! 😊
